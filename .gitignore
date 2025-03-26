@@ -1,0 +1,5 @@
+# Ignorer les environnements virtuels et fichiers compilés
+env/
+*.pyc
+__pycache__/
+ganf/
