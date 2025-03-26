@@ -44,7 +44,7 @@ def wrangle(filepath):
     df['bankrupt'] = df['bankrupt'].astype(np.int64)
     df['status'] = df['bankrupt'].apply(lambda x: "The company in bankrupt" if x == 1 else "The company is safe")
 
-    # column is the most missing value
+    # column is the most missing value.
     df.drop(columns='feat_37',inplace=True)
     return df
 
@@ -63,7 +63,7 @@ bank_rupt = st.sidebar.radio('Type de classes',('0','1'))
 st.sidebar.markdown(df.query('bankrupt==@bank_rupt')[["status"]])
                     
 st.sidebar.markdown("### Targets Bankrupt Frequences")
-select = st.sidebar.selectbox('Visualisation type', ['histogram', 'Pie chart'], key='1')
+select = st.sidebar.selectbox('Visualisation type', ['histogram', 'BoxPlot'], key='1')
 val_count = df["bankrupt"].value_counts(normalize = True)
 st.write(val_count)
 val_count = pd.DataFrame({'type classes': val_count.index, 'numbers' : val_count.values})
@@ -115,7 +115,7 @@ if not st.sidebar.checkbox("caché", True):
     
 
         
-st.write("On remarque en remarquant le box blot qu'une bonne partie des données semble se concentrée dans un intervalle precis. Les ecarts de valeurs nous montre qu'il y a enormement de valeurs aberrantes.")
+st.write("On remarque en remarquant le boxplot qu'une bonne partie des données semble se concentrée dans un intervalle precis. Les ecarts de valeurs nous montre qu'il y a enormement de valeurs aberrantes.")
 q1,q9= df["feat_27"].quantile([0.1,0.9])
 mask = df["feat_27"].between(q1,q9)  
 
